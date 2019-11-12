@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lazampah</title>
+    <style>
+        .atas, .atas td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            min-width: 200px;
+            text-align: center;
+        }
+        .gambar{
+            cursor: pointer;
+        }
+
+        table tbody .konten td{
+            min-width: 100px;
+        }
+
+        .bawah {
+            background-color: brown;
+            min-width: 400px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Welcome!</h1>
+        <table class="atas">
+            <thead>
+                <tr>
+                    <td>Type</td>
+                    <td>Image</td>
+                    <td>Price</td>
+                </tr>
+            </thead>
+            <tbody id="menu">
+
+            </tbody>
+        </table><br>
+        <h3>Cart</h3>
+        <table class="bawah">
+            <tbody id="cart">
+                
+            </tbody>
+        </table>
+        <h3 id="checkout"></h3>
+        <input type="button" value="Checkout" onclick="checkout()">
+    </center>
+    
+</body>
+<script>
+    class product {
+        constructor(type, image, price) {
+            this.type = type,
+            this.image = image,
+            this.price = price;
+        }
+    }
+
+    var menu = [
+        new product('Iphone 11', 'https://videotron.com/vtrn/images/resi/mobilite/appareils/telephones/apple/iphone11promax/iphone-11-pro-max-space-grey-carousel-3.png', 10000),
+        new product('OnePlus 5', 'https://cdn.opstatics.com/store/20170907/assets/images/support/support-list/model-specs-list/details/5-slate-gray.png', 20000),
+        new product('Samsung S8', 'https://clipart.info/images/ccovers/1503496394samsung-s8-mobile-png.png', 30000)
+    ];
+    
+    var cart=[];
+
+    function printMenu(){
+        var output='';
+        for(var i = 0;i<menu.length;i++){
+            output+=`
+                <tr>
+                    <td>${menu[i].type}</td>
+                    <td class="gambar"><img src="${menu[i].image}" alt="photo" width="200px" onclick="addToCart(${i})"></td>
+                    <td>Rp ${menu[i].price.toLocaleString()},-</td>
+                </tr>
+                `
+        }
+        document.getElementById('menu').innerHTML=output;
+    }
+
+    function printCart(){
+        var output=''
+        for(var i = 0;i<cart.length;i++){
+            output+=`
+                <tr class="konten">
+                    <td><img src="${cart[i].image}" alt="photo" width="50px"></td>
+                    <td>${cart[i].type}</td>
+                    <td>${cart[i].price}</td>
+                    <td><input type="button" value="Delete from Cart" onclick="deleteFromCart(${i})"></td>
+                </tr>
+                `
+        }
+        document.getElementById('cart').innerHTML=output;
+    }
+    function addToCart(index){
+        cart.push(menu[index])
+        printCart();
+    }
+
+    function deleteFromCart(index){
+        cart.splice(index,1)
+        printCart();
+    }
+
+    function checkout(){
+        total=0;
+        for(var i = 0;i<cart.length;i++){
+            total+=cart[i].price
+        }
+        document.getElementById('checkout').innerHTML=`Your Total Price : Rp ${total.toLocaleString()},-`;
+        cart.splice(0,cart.length)
+        printCart()
+        console.log(total)
+    }
+    printMenu();
+
+</script>
+
+</html>
+
