@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Quiz</title>
+    <style>
+        .layer {
+            border: 1px solid black;
+            align-content: center;
+            max-width: 500px
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+    <div class="layer">
+            <div><b>1. Siapa Penemu Indomie?</b></div>
+            <h5>
+                <input type="radio" name="nomor1"> Ya penemunya
+                <input type="radio" name="nomor1"> Bukan Saya
+                <input type="radio" name="nomor1"> Apip
+                <input type="radio" name="nomor1"> Lian
+            </h5>
+            <div><b>2. Siapa Guru JCWEB11?</b></div>
+            <h5>
+                <input type="radio" name="nomor2"> Penemu Indomie
+                <input type="radio" name="nomor2"> Saya
+                <input type="radio" name="nomor2"> Apip
+                <input type="radio" name="nomor2"> Lian
+            </h5>
+            <div><b>3. Siapa Murid Paling Ganteng di JCWEB11?</b></div>
+            <h5>
+                <input type="radio" name="nomor3"> Penemu Indomie
+                <input type="radio" name="nomor3"> Saya
+                <input type="radio" name="nomor3"> Apip
+                <input type="radio" name="nomor3"> Lian
+            </h5>
+            <div><b>4. Satu + satu = ?</b></div>
+            <h5>
+                <input type="radio" name="nomor4"> 1
+                <input type="radio" name="nomor4"> dua
+                <input type="radio" name="nomor4"> satusatu
+                <input type="radio" name="nomor4"> 2
+            </h5>
+            <div><b>5. Soal Bonus</b></div>
+            <h5>
+                <input type="radio" name="nomor5"> pilih
+                <input type="radio" name="nomor5"> yang
+                <input type="radio" name="nomor5"> opsi terakhir
+                <input type="radio" name="nomor5"> semua benar
+            </h5>
+            <input type="button" value="Masukkan Jawaban" onclick="checkJawaban()">
+            <p id="tempatNilai"></p>
+        </div>
+    </center>
+</body>
+<script>
+    function checkJawaban(){
+        var jawaban1 = document.getElementsByName('nomor1');
+        var jawaban2 = document.getElementsByName('nomor2');
+        var jawaban3 = document.getElementsByName('nomor3');
+        var jawaban4 = document.getElementsByName('nomor4');
+        var jawaban5 = document.getElementsByName('nomor5');
+        var jumlahSoal = 5;
+        var nilai=0
+            if(jawaban1[0].checked){
+                nilai+=20
+            } 
+            if (jawaban2[3].checked) {
+                nilai+=20
+            } 
+            if (jawaban3[2].checked){
+                nilai+=20
+            } 
+            if (jawaban4[2].checked){
+                nilai+=20
+            } 
+            if (jawaban5[3].checked){
+                nilai+=20
+            }
+        document.getElementById('tempatNilai').innerHTML=`Nilai anda: ${nilai}`
+    }
+</script>
+</html>
